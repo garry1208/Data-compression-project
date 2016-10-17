@@ -1,0 +1,9 @@
+rohitkhole 5 69 
+#include < stdio.h>
+#include <stdlib.h>
+int main() {
+	int a; 
+	char ch;
+	printf("%d", a);
+	return 0;
+}

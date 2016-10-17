@@ -30,7 +30,7 @@ struct minheap *createminheap(long int capacity) {  //create and initialise min 
 
 void inserttoheap( struct node *temp) { //insert to heap without sorting
 		//Minheap->array[Minheap->heapsize] = (node *)malloc(sizeof(struct node));
-		printf("in insert function\n");
+		//printf("in insert function\n");
 		Minheap->array[Minheap->heapsize] = temp;
 		/*Minheap->array[Minheap->heapsize]->ch = temp->ch;
 		printf("1\n");
@@ -41,7 +41,7 @@ void inserttoheap( struct node *temp) { //insert to heap without sorting
 		Minheap->array[Minheap->heapsize]->right = temp->right;
 		printf("4\n");*/
 		Minheap->heapsize++;
-		printf("inserted\n");
+		//printf("inserted\n");
 }
 
 void heapify() { //sort in ascending order
@@ -114,4 +114,6 @@ void printhufftree(tree t) {
 	printhufftree(t->left);
 	printf("%c  %d\n", t->ch, t->freq);
 	printhufftree(t->right);
-}	
+}
+
+
