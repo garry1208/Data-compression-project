@@ -1,6 +1,7 @@
 typedef struct node {
 	char ch;
 	int freq;
+	int code;
 	struct node *left, *right;
 }node;
 
@@ -17,6 +18,8 @@ typedef struct minheap {
 }minheap;
 
 struct minheap *Minheap;
+
+char *codearr;
 
 struct node* createnode(char ch, int freq);
 
@@ -36,4 +39,6 @@ node *buildhuffmantree();
 
 void printhufftree(tree t);
 
+void encode(FILE *,tree t, char *, int);
 
+void writecodetofile(char *);
