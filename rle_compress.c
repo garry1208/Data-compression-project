@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
 	FILE *inputfp, *outputfp;
 	char *inputstr, ch;
-	int i = 0, k;
+	int i = 0, k, magicnumber = 111;
 	long int charcount = 0;
 	inputstr = (char *)malloc(sizeof(char) * 1000000);
 	inputfp = fopen(argv[1], "r");
@@ -32,20 +32,20 @@ int main(int argc, char *argv[]) {
 	}
 	inputstr[i] = '\0';
 	i = 0;
+	fwrite(&magicnumber, sizeof(int), 1, outputfp);
 	while(inputstr[i] != '\0') {
 		fwrite(&inputstr[i], sizeof(char), 1, outputfp);
 		charcount++;
-		printf("%c : ", inputstr[i]);
 		for(k = i + 1; inputstr[k] == inputstr[k - 1]; k++) {
 			charcount++;
 			i++;
 		}
 		fwrite(&charcount, sizeof(long int), 1, outputfp);
-		printf(" %ld\n", charcount);
 		charcount = 0;
 		i++;
 	}
 	i = 0;
+	printf("file compressed to %s successfully !! \n", argv[2]);
 	fclose(inputfp);
 	fclose(outputfp);
 	return 0;
