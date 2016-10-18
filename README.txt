@@ -1,6 +1,6 @@
 DATA COMPRESSION PROJECT
 
-ALGORITHM 1: HUFFMAN COMPRESSION TECHNIQUE
+ALGORITHM 1: HUFFMAN COMPRESSION TECHNIQUE  (STATUS : PENDING)
 
 IT IS TO BE RUN THROUGH COMMAND LINE ITSELF
 
@@ -15,9 +15,17 @@ sample input & output files are included in repository to show how both files wi
 NOTE: WORKS ONLY FOR ASCII FILES.
 
 
-ALGORITHM 2: RUN LENGTH ENCODING
+ALGORITHM 2: RUN LENGTH ENCODING  (STATUS : DONE)
 
-usage is same as huffman that is : <a.out> <source> <destination>
+FOR COMRESSING THE ASCII FILE:
+usage is :cc -Wall rle_compression.c 
+          <a.out> <source> <destination>
 
-it counts repitative characters in an ascii string and just writes the character and its count in the encoded string.
+FOR DECOMRESSING THE BINARY FILE:
+usage is :cc -Wall rle_decompression.c 
+          <a.out> <source> <destination>
+
+It counts repitative characters in an ascii string and just writes the character and its count in the encoded string.
+
+When there are no repitative characters the file size is greater than input because of the counts that are stored after each  character.
 
