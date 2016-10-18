@@ -1,20 +1,26 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <stdarg.h>
 
 int main(int argc, char *argv[]) {
 	FILE *inputfp, *outputfp;
-	char *inputstr, *outputstr, ch;
-	int i = 0, j = 0, k;
+	char *inputstr, ch;
+	int i = 0, k;
 	long int charcount = 0;
 	inputstr = (char *)malloc(sizeof(char) * 1000000);
-	outputstr = (char *)malloc(sizeof(char) * 10000);
 	inputfp = fopen(argv[1], "r");
 	if(inputfp == NULL) {
 		perror("E:cannot open file");
 		return 1;
 	}
-	if(argc != 2) {
+	outputfp = fopen(argv[2], "w");
+	if(outputfp == NULL) {
+		perror("E:cannot create file");
+		return 1;
+	}
+	if(argc != 3) {
 		perror("usage: <a.out> <input file> <output file>");
 		return 1;
 	} 
@@ -27,18 +33,20 @@ int main(int argc, char *argv[]) {
 	inputstr[i] = '\0';
 	i = 0;
 	while(inputstr[i] != '\0') {
-		outputstr[j++] = inputstr[i];
+		fwrite(&inputstr[i], sizeof(char), 1, outputfp);
 		charcount++;
+		printf("%c : ", inputstr[i]);
 		for(k = i + 1; inputstr[k] == inputstr[k - 1]; k++) {
 			charcount++;
 			i++;
 		}
-		outputstr[j++] = charcount + '0';
-		i++;
+		fwrite(&charcount, sizeof(long int), 1, outputfp);
+		printf(" %ld\n", charcount);
 		charcount = 0;
+		i++;
 	}
-	outputstr[j] = '\0';
-	printf("%s\n", inputstr);
-	printf("%s\n", outputstr);
+	i = 0;
+	fclose(inputfp);
+	fclose(outputfp);
 	return 0;
 }
